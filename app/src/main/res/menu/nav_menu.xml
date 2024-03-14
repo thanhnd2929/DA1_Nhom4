@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/QuanLyHoaDon"
+        android:icon="@drawable/ic1"
+        android:title="Quản lý hoá đơn" />
+
+    <item
+        android:id="@+id/QuanLyLoaiGiay"
+        android:icon="@drawable/ic2"
+        android:title="Quản lý loại giày" />
+    <item
+        android:id="@+id/QuanLyGiay"
+        android:icon="@drawable/ic3"
+        android:title="Quản lý giày" />
+    <item
+        android:id="@+id/QuanLyKhachHang"
+        android:icon="@drawable/ic4"
+        android:title="Quản lý khách hàng" />
+    <item
+        android:id="@+id/QuanLyNhanVien"
+        android:icon="@drawable/ic5"
+        android:visible="false"
+        android:title="Quản lý nhân viên" />
+
+
+    <group android:checkableBehavior="single">
+        <item android:title="Khác">
+            <menu>
+                <item
+                    android:id="@+id/DoiMatKhau"
+                    android:icon="@drawable/ickey"
+                    android:visible="false"
+                    android:title="Đổi mật khẩu" />
+                <item
+                    android:id="@+id/DangXuat"
+                    android:icon="@drawable/iclogout"
+                    android:title="Đăng xuất" />
+            </menu>
+        </item>
+    </group>
+</menu>

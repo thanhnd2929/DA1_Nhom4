@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/TopBanGiay"
+        android:icon="@drawable/top_giay"
+        android:title="Top"/>
+
+    <item android:id="@+id/TopNV"
+        android:icon="@drawable/top_nv"
+        android:title="Top NV"/>
+
+    <item android:id="@+id/DoanhThu"
+        android:icon="@drawable/doanh_thu"
+        android:title="Doanh Thu"/>
+</menu>
