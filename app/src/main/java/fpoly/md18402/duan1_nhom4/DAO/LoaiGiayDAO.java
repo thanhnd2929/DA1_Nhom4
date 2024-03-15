@@ -21,6 +21,12 @@ public class LoaiGiayDAO {
         db = dbHelper.getWritableDatabase();
     }
 
+    public LoaiGiay getByName(String name) {
+        String sql = "SELECT * FROM LoaiGiay WHERE tenLoai=?";
+        List<LoaiGiay> list = getData(sql, name);
+        return list.get(0);
+    }
+
     public long addLoaiGiay(LoaiGiay loaiGiay) {
         ContentValues values = new ContentValues();
         values.put("tenLoai", loaiGiay.getTenLoai());
@@ -33,17 +39,17 @@ public class LoaiGiayDAO {
         values.put("tenLoai", loaiGiay.getTenLoai());
         values.put("loaiHang", loaiGiay.getLoaiHang());
         String[] dk = new String[]{String.valueOf(loaiGiay.getMaLoai())};
-        return  db.update("LoaiGiay", values, "maLoai=?", dk);
+        return db.update("LoaiGiay", values, "maLoai=?", dk);
     }
 
     public int delete(String id) {
         return db.delete("LoaiGiay", "maLoai=?", new String[]{id});
     }
 
-    public List<LoaiGiay> getData(String sql, String...selectionArgs) {
+    public List<LoaiGiay> getData(String sql, String... selectionArgs) {
         List<LoaiGiay> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql,selectionArgs);
-        if(c.getCount()>0){
+        Cursor c = db.rawQuery(sql, selectionArgs);
+        if (c.getCount() > 0) {
             c.moveToFirst();
             do {
                 list.add(new LoaiGiay(
@@ -51,7 +57,7 @@ public class LoaiGiayDAO {
                         c.getString(1),
                         c.getString(2))
                 );
-            }while (c.moveToNext());
+            } while (c.moveToNext());
         }
         return list;
     }
