@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0094FF"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD LOẠI GIÀY"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_sneaker_type_id"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="12dp"
+        android:background="@drawable/border_bottom"
+        android:hint="Mã loại"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/edt_sneaker_type_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="12dp"
+        android:background="@drawable/border_bottom"
+        android:hint="Tên loại"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/edt_sneaker_type_cate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="12dp"
+        android:background="@drawable/border_bottom"
+        android:hint="loại hàng"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_save_sneaker_type"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/black"
+            android:text="save"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_cancel_save_sneaker_type"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/white"
+            android:text="cancel"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>
