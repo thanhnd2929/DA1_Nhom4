@@ -16,7 +16,10 @@ public class CTHD {
         this.giaMua = giaMua;
     }
 
-    public CTHD(int maHD, int maGiay, int soLuong, int giaMua) {
+
+
+    public CTHD(int maCTHD, int maHD, int maGiay, int soLuong, int giaMua) {
+        this.maCTHD = maCTHD;
         this.maHD = maHD;
         this.maGiay = maGiay;
         this.soLuong = soLuong;
@@ -61,5 +64,16 @@ public class CTHD {
 
     public void setGiaMua(int giaMua) {
         this.giaMua = giaMua;
+    }
+
+    @Override
+    public String toString() {
+        return "CTHD{" +
+                "maCTHD=" + maCTHD +
+                ", maHD=" + maHD +
+                ", maGiay=" + maGiay +
+                ", soLuong=" + soLuong +
+                ", giaMua=" + giaMua +
+                '}';
     }
 }
