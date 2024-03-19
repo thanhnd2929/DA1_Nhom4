@@ -6,7 +6,7 @@ public class NhanVien {
     private String matKhau;
     private String sdt;
 
-    public NhanVien() {
+    public NhanVien(String maNv, String hoTen, String pass, int i) {
     }
 
     public NhanVien(String maNV, String hoTen, String matKhau, String sdt) {

@@ -1,70 +1,97 @@
 package fpoly.md18402.duan1_nhom4.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fpoly.md18402.duan1_nhom4.Database.DbHelper;
-import fpoly.md18402.duan1_nhom4.Model.Giay;
 import fpoly.md18402.duan1_nhom4.Model.KhachHang;
 
 public class KhachHangDAO {
 
     private DbHelper dbHelper;
-    private SQLiteDatabase db;
+
 
     public KhachHangDAO(Context context) {
         dbHelper = new DbHelper(context);
-        db = dbHelper.getWritableDatabase();
     }
 
-    public long addKhachHang(KhachHang khachHang) {
+    public ArrayList<KhachHang> getAll() {
+        ArrayList<KhachHang> listTv = new ArrayList<KhachHang>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM KhachHang", null);
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    KhachHang kh = new KhachHang();
+                    kh.setMaKH(cursor.getInt(0));
+                    kh.setHoTen(cursor.getString(1));
+                    kh.setSdt(cursor.getString(2));
+                    listTv.add(kh);
+                    cursor.moveToNext();
+                }
+            }
+        } catch (Exception e) {
+            Log.e("zzzzzzzzzzzzzzzzzzzz", "Lỗiiiiii");
+        }
+        return listTv;
+    }
+
+    public boolean insertKh(KhachHang tv) {
+        if (tv == null) return false; // Kiểm tra đối tượng tv không null
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("hoTen", khachHang.getHoTen());
-        values.put("sdt", khachHang.getSdt());
-        return db.insert("KhachHang", null, values);
+        values.put("hoTen", tv.getHoTen());
+        values.put("sdt", tv.getSdt());
+        long row = db.insert("KhachHang", null, values);
+        return (row > 0);
     }
 
-    public long updateKhachHang(KhachHang khachHang) {
+    public boolean updateKh(KhachHang kh) {
+        if (kh == null) return false; // Kiểm tra đối tượng kh không null
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("hoTen", khachHang.getHoTen());
-        values.put("sdt", khachHang.getSdt());
-        String[] dk = new String[]{String.valueOf(khachHang.getMaKH())};
-        return db.update("KhachHang", values, "maKH=?", dk);
+        values.put("hoTen", kh.getHoTen());
+        values.put("sdt", kh.getSdt());
+        long row = db.update("KhachHang", values, "maKh=?", new String[]{String.valueOf(kh.getMaKH())});
+        return (row > 0);
     }
 
-    public int delete(String id) {
-        return db.delete("KhachHang", "maKH=?", new String[]{id});
+    public boolean deleteKh(int maKh) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long row = db.delete("KhachHang", "maKh=?", new String[]{String.valueOf(maKh)});
+        return (row > 0);
     }
 
-    public List<KhachHang> getData(String sql, String...selectionArgs) {
-        List<KhachHang> list = new ArrayList<>();
-        Cursor c = db.rawQuery(sql,selectionArgs);
-        if(c.getCount()>0){
-            c.moveToFirst();
-            do {
-                list.add(new KhachHang(
-                        c.getInt(0),
-                        c.getString(1),
-                        c.getString(2)
-                ));
-            }while (c.moveToNext());
+    private List<KhachHang> getData(String sql, String... selectionArgs) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        List<KhachHang> list = new ArrayList<KhachHang>();
+        Cursor c = db.rawQuery(sql, selectionArgs);
+        while (c.moveToNext()) {
+            KhachHang obj = new KhachHang();
+            obj.setMaKH(c.getInt(0));
+            obj.setHoTen(c.getString(1));
+            obj.setSdt(c.getString(2));
+            list.add(obj);
         }
         return list;
     }
 
-    public List<KhachHang> getAll() {
-        String sql = "SELECT * FROM KhachHang";
-        return getData(sql);
-    }
-
     public KhachHang getID(String id) {
-        String sql = "SELECT * FROM KhachHang WHERE maKH=?";
+        String sql = "select * from KhachHang where maKh=?";
         List<KhachHang> list = getData(sql, id);
-        return list.get(0);
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 }
+

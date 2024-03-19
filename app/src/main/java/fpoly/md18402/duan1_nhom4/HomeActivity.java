@@ -22,6 +22,11 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 import fpoly.md18402.duan1_nhom4.DAO.NhanVienDAO;
+import fpoly.md18402.duan1_nhom4.Fragments.ChangePassFragment;
+import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
+
+import fpoly.md18402.duan1_nhom4.Fragments.khachHang.KhachHangFragment;
+import fpoly.md18402.duan1_nhom4.Fragments.nhanVien.NhanVienFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker.SneakerManagementFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker_type.ListTypeSneakerFragment;
 import fpoly.md18402.duan1_nhom4.Model.NhanVien;
@@ -70,6 +75,9 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
 
+        HoaDonFragment fragment = new HoaDonFragment();
+        replaceFragment(fragment);
+
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -77,17 +85,21 @@ public class HomeActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.QuanLyHoaDon) {
-
+                    HoaDonFragment hoaDonFragment = new HoaDonFragment();
+                    replaceFragment(hoaDonFragment);
                 } else if (id == R.id.QuanLyLoaiGiay) {
                     replaceFragment(new ListTypeSneakerFragment());
                 } else if (id == R.id.QuanLyGiay) {
                     replaceFragment(new SneakerManagementFragment());
                 } else if (id == R.id.QuanLyKhachHang) {
-
+                    KhachHangFragment khachHangFragment = new KhachHangFragment();
+                    replaceFragment(khachHangFragment);
                 } else if (id == R.id.DoiMatKhau) {
-
+                    ChangePassFragment changePassFragment = new ChangePassFragment();
+                    replaceFragment(changePassFragment);
                 } else if (id == R.id.QuanLyNhanVien) {
-
+                    NhanVienFragment nhanVienFragment = new NhanVienFragment();
+                    replaceFragment(nhanVienFragment);
                 } else if (id == R.id.DangXuat) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
                     builder.setTitle("Thông báo");
