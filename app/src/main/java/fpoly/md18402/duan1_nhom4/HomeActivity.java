@@ -25,6 +25,8 @@ import fpoly.md18402.duan1_nhom4.DAO.NhanVienDAO;
 import fpoly.md18402.duan1_nhom4.Fragments.ChangePassFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
 
+import fpoly.md18402.duan1_nhom4.Fragments.khachHang.KhachHangFragment;
+import fpoly.md18402.duan1_nhom4.Fragments.nhanVien.NhanVienFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker.SneakerManagementFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker_type.ListTypeSneakerFragment;
 import fpoly.md18402.duan1_nhom4.Model.NhanVien;
@@ -74,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         HoaDonFragment fragment = new HoaDonFragment();
-        repplaceFragment(fragment);
+        replaceFragment(fragment);
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,18 +86,20 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (id == R.id.QuanLyHoaDon) {
                     HoaDonFragment hoaDonFragment = new HoaDonFragment();
-                    repplaceFragment(hoaDonFragment);
+                    replaceFragment(hoaDonFragment);
                 } else if (id == R.id.QuanLyLoaiGiay) {
                     replaceFragment(new ListTypeSneakerFragment());
                 } else if (id == R.id.QuanLyGiay) {
                     replaceFragment(new SneakerManagementFragment());
                 } else if (id == R.id.QuanLyKhachHang) {
-
+                    KhachHangFragment khachHangFragment = new KhachHangFragment();
+                    replaceFragment(khachHangFragment);
                 } else if (id == R.id.DoiMatKhau) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
-                    repplaceFragment(changePassFragment);
+                    replaceFragment(changePassFragment);
                 } else if (id == R.id.QuanLyNhanVien) {
-
+                    NhanVienFragment nhanVienFragment = new NhanVienFragment();
+                    replaceFragment(nhanVienFragment);
                 } else if (id == R.id.DangXuat) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
                     builder.setTitle("Thông báo");

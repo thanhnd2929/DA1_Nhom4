@@ -3,13 +3,13 @@ package fpoly.md18402.duan1_nhom4.DAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fpoly.md18402.duan1_nhom4.Database.DbHelper;
-import fpoly.md18402.duan1_nhom4.Model.Giay;
 import fpoly.md18402.duan1_nhom4.Model.NhanVien;
 
 public class NhanVienDAO {
@@ -21,13 +21,14 @@ public class NhanVienDAO {
         db = dbHelper.getWritableDatabase();
     }
 
-    public long addNhanVien(NhanVien nhanVien) {
+    public boolean addNhanVien(NhanVien nhanVien) {
         ContentValues values = new ContentValues();
         values.put("maNV", nhanVien.getMaNV());
         values.put("hoTen", nhanVien.getHoTen());
         values.put("matKhau", nhanVien.getMatKhau());
         values.put("sdt", nhanVien.getSdt());
-        return  db.insert("NhanVien", null, values);
+        long row = db.insert("NhanVien", null, values);
+        return (row > 0);
     }
 
     public long updateNhanVien(NhanVien nhanVien) {
@@ -78,5 +79,8 @@ public class NhanVienDAO {
         if (list.size()==0){
             return -1;
         }return 1;
+    }
+    public void close() {
+        dbHelper.close();
     }
 }
