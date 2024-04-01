@@ -23,8 +23,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import fpoly.md18402.duan1_nhom4.DAO.NhanVienDAO;
 import fpoly.md18402.duan1_nhom4.Fragments.ChangePassFragment;
+import fpoly.md18402.duan1_nhom4.Fragments.DoanhThuFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
 
+import fpoly.md18402.duan1_nhom4.Fragments.TopNvFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker.SneakerManagementFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker_type.ListTypeSneakerFragment;
 import fpoly.md18402.duan1_nhom4.Model.NhanVien;
@@ -74,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         HoaDonFragment fragment = new HoaDonFragment();
-        repplaceFragment(fragment);
+        replaceFragment(fragment);
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (id == R.id.QuanLyHoaDon) {
                     HoaDonFragment hoaDonFragment = new HoaDonFragment();
-                    repplaceFragment(hoaDonFragment);
+                    replaceFragment(hoaDonFragment);
                 } else if (id == R.id.QuanLyLoaiGiay) {
                     replaceFragment(new ListTypeSneakerFragment());
                 } else if (id == R.id.QuanLyGiay) {
@@ -93,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 } else if (id == R.id.DoiMatKhau) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
-                    repplaceFragment(changePassFragment);
+                    replaceFragment(changePassFragment);
                 } else if (id == R.id.QuanLyNhanVien) {
 
                 } else if (id == R.id.DangXuat) {
@@ -130,9 +132,11 @@ public class HomeActivity extends AppCompatActivity {
                 if (idBottom == R.id.TopBanGiay) {
 
                 } else if (idBottom == R.id.TopNV) {
-
+                    TopNvFragment topNvFragment = new TopNvFragment();
+                    replaceFragment(topNvFragment);
                 } else if (idBottom == R.id.DoanhThu) {
-
+                    DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
+                    replaceFragment(doanhThuFragment);
                 }
                 getSupportActionBar().setTitle(item.getTitle());
                 return true;
