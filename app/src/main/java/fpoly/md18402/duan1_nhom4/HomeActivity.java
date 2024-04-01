@@ -23,10 +23,14 @@ import com.google.android.material.navigation.NavigationView;
 
 import fpoly.md18402.duan1_nhom4.DAO.NhanVienDAO;
 import fpoly.md18402.duan1_nhom4.Fragments.ChangePassFragment;
+import fpoly.md18402.duan1_nhom4.Fragments.DoanhThuFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
+
+import fpoly.md18402.duan1_nhom4.Fragments.TopNvFragment;
 
 import fpoly.md18402.duan1_nhom4.Fragments.khachHang.KhachHangFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.nhanVien.NhanVienFragment;
+
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker.SneakerManagementFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.sneaker_type.ListTypeSneakerFragment;
 import fpoly.md18402.duan1_nhom4.Model.NhanVien;
@@ -134,9 +138,11 @@ public class HomeActivity extends AppCompatActivity {
                 if (idBottom == R.id.TopBanGiay) {
 
                 } else if (idBottom == R.id.TopNV) {
-
+                    TopNvFragment topNvFragment = new TopNvFragment();
+                    replaceFragment(topNvFragment);
                 } else if (idBottom == R.id.DoanhThu) {
-
+                    DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
+                    replaceFragment(doanhThuFragment);
                 }
                 getSupportActionBar().setTitle(item.getTitle());
                 return true;
