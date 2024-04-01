@@ -48,7 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 //        tạo bảng nhân viên
         String createTableNhanVien = "CREATE TABLE NhanVien (\n" +
-                "    maNV    TEXT    PRIMARY KEY\n" +
+                "    maNV    TEXT    PRIMARY KEY \n" +
                 "                    NOT NULL,\n" +
                 "    hoTen   TEXT    NOT NULL,\n" +
                 "    matKhau TEXT    NOT NULL,\n" +
