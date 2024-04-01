@@ -26,7 +26,7 @@ import fpoly.md18402.duan1_nhom4.R;
 
 
 public class AddSneakerFragment extends Fragment {
-    private EditText mEdtID, mEdtName, mEdtPrice, mEdtNote;
+    private EditText  mEdtName, mEdtPrice, mEdtNote;
     private Spinner mSpnType;
 
     private Button mBtnSave, mBtnCancel;
@@ -83,7 +83,6 @@ public class AddSneakerFragment extends Fragment {
     }
 
     public void loadElements(View root) {
-        mEdtID = root.findViewById(R.id.edt_sneaker_id);
         mEdtName = root.findViewById(R.id.edt_sneaker_name);
         mEdtPrice = root.findViewById(R.id.edt_sneaker_price);
         mSpnType = root.findViewById(R.id.spn_sneaker_type);
@@ -93,12 +92,11 @@ public class AddSneakerFragment extends Fragment {
     }
 
     public void addSneaker() {
-        if (mEdtID.getText().toString().equals("") || mEdtName.getText().toString().equals("") || mEdtPrice.getText().toString().equals("") || mEdtNote.getText().toString().equals("")) {
+        if (mEdtName.getText().toString().equals("") || mEdtPrice.getText().toString().equals("") || mEdtNote.getText().toString().equals("")) {
             Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int ID = Integer.parseInt(mEdtID.getText().toString());
         String name = String.valueOf(mEdtName.getText());
         int price = Integer.parseInt(mEdtPrice.getText().toString());
         String description = String.valueOf(mEdtNote.getText());
@@ -108,7 +106,7 @@ public class AddSneakerFragment extends Fragment {
             selectedType = loaiGiays.get(0);
         }
         LoaiGiay loaiGiay = loaiGiayDAO.getByName(selectedType);
-        Giay giay = new Giay(ID, name, description, price, loaiGiay.getMaLoai());
+        Giay giay = new Giay(name, description, price, loaiGiay.getMaLoai());
         // save sneaker
         giayDAO.addGiay(giay);
         // show toast

@@ -32,6 +32,7 @@ public class HoaDonDAO {
         values.put("thanhToan", hoaDon.getThanhToan());
         values.put("maKH", hoaDon.getMaKH());
         values.put("maNV", hoaDon.getMaNV());
+        values.put("soHD", hoaDon.getSoHD());
         return db.insert("HoaDon", null, values);
     }
 
@@ -41,6 +42,7 @@ public class HoaDonDAO {
         values.put("thanhToan", hoaDon.getThanhToan());
         values.put("maKH", hoaDon.getMaKH());
         values.put("maNV", hoaDon.getMaNV());
+        values.put("soHD", hoaDon.getSoHD());
         String[] dk = new String[]{String.valueOf(hoaDon.getMaHD())};
         return db.update("HoaDon", values, "maHD=?", dk);
     }
@@ -59,6 +61,7 @@ public class HoaDonDAO {
             obj.setMaHD(Integer.parseInt(cursor.getString(cursor.getColumnIndex("maHD"))));
             obj.setMaKH(Integer.parseInt(cursor.getString(cursor.getColumnIndex("maKH"))));
             obj.setMaNV(cursor.getString(cursor.getColumnIndex("maNV")));
+            obj.setSoHD(cursor.getString(cursor.getColumnIndex("soHD")));
             try {
                 obj.setNgayMua(sdf.parse(cursor.getString(cursor.getColumnIndex("ngayMua"))));
             } catch (ParseException e) {

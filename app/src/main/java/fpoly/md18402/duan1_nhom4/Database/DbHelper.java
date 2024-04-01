@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "NHOM4";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 6;
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -65,7 +65,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "    maKH      INTEGER NOT NULL\n" +
                 "                      REFERENCES KhachHang (maKH),\n" +
                 "    maNV      TEXT    REFERENCES NhanVien (maNV) \n" +
-                "                      NOT NULL\n" +
+                "                      NOT NULL,\n" +
+                "    soHD TEXT NOT NULL\n" +
                 ");\n";
         db.execSQL(createTableHoaDon);
 

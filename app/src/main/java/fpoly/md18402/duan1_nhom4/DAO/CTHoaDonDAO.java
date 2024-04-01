@@ -24,6 +24,7 @@ public class CTHoaDonDAO {
 
     public long addCTHD(CTHD cthd) {
         ContentValues values = new ContentValues();
+
         values.put("maHD", cthd.getMaHD());
         values.put("maGiay", cthd.getMaGiay());
         values.put("soLuong", cthd.getSoLuong());
@@ -61,8 +62,8 @@ public class CTHoaDonDAO {
         return list;
     }
 
-    public List<CTHD> getAll() {
-        String sql = "SELECT * FROM CTHD";
+    public List<CTHD> getAll(int maHD) {
+        String sql = "SELECT * FROM CTHD WHERE maHD="+maHD;
         return getData(sql);
     }
 
