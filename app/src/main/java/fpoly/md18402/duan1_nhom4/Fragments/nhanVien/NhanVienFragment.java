@@ -104,8 +104,50 @@ public class NhanVienFragment extends Fragment {
                 return true; // Thay đổi từ false thành true để ngăn việc xử lý sự kiện tiếp theo
             }
         });
+
+        // hien thi mat khau nhan vien
+        lvNhanVien.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NhanVien nhanVien = listNv.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Mật khẩu của " + nhanVien.getHoTen());
+                builder.setMessage("Mật khẩu: " + nhanVien.getMatKhau());
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+
         return v;
     }
+
+    public void onItemClick(NhanVien nhanVien) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Mật khẩu của " + nhanVien.getHoTen());
+        builder.setMessage("Mật khẩu: " + nhanVien.getMatKhau());
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+
+        // Đặt màu nền mờ cho dialog
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        // Đặt cho dialog có thể bị hủy bằng cách chạm ra ngoài
+        dialog.setCancelable(true);
+
+        dialog.show();
+    }
+
 
     public void capNhatLv() {
         listNv = (ArrayList<NhanVien>) nhanVienDao.getAll();
@@ -126,26 +168,7 @@ public class NhanVienFragment extends Fragment {
         edtSdt = dialog.findViewById(R.id.edtSdt_itemNhanVien);
         btnSave = dialog.findViewById(R.id.Add_NhanVien);
         btnHuy = dialog.findViewById(R.id.huyAdd_NhanVien);
-        spinner = dialog.findViewById(R.id.spCoSo_itemNhanVien);
-        //spinner.setAdapter(spinerAdape);
-//
-//        if (listCoSo.isEmpty()) {
-//            Toast.makeText(getContext(), "Vui lòng thêm cơ sở trước", Toast.LENGTH_SHORT).show();
-//            dialog.dismiss();
-//            return;
-//        }
-//lấy mã cơ sở
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -89,17 +89,17 @@ public class HoaDonFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              openDialog(getActivity(), 0);  // add
+                openDialog(getActivity(), 0);  // add
             }
         });
 
         lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-          @Override
-          public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            item = list.get(position);
-            openDialog(getActivity(), 1); // update
-            return false;
-          }
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                item = list.get(position);
+                openDialog(getActivity(), 1); // update
+                return false;
+            }
         });
 
         lvHoaDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -218,44 +218,50 @@ public class HoaDonFragment extends Fragment {
 
         SharedPreferences preferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
         tenNv = preferences.getString("USER", "");
-        tvNV.setText( tenNv);
+        tvNV.setText(tenNv);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            item = new HoaDon();
-            item.setMaNV(tvNV.getText().toString());
-            item.setMaKH(maKH);
-            item.setNgayMua(new Date());
-            item.setSoHD(edtSoHD.getText().toString());
+            @Override
+            public void onClick(View v) {
 
-            if (rdoTienMat.isChecked()) {
-              item.setThanhToan(0);
-            } else {
-              item.setThanhToan(1);
-            }
+                if (edtSoHD.getText().toString().isEmpty()) {
+                    Toast.makeText(context, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            if (type == 0) {
-              //type==0 insert
-              if (hoaDonDAO.addHoaDon(item) > 0) {
-                Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                item = new HoaDon();
+                item.setMaNV(tvNV.getText().toString());
+                item.setMaKH(maKH);
+                item.setNgayMua(new Date());
+                item.setSoHD(edtSoHD.getText().toString());
+
+                if (rdoTienMat.isChecked()) {
+                    item.setThanhToan(0);
+                } else {
+                    item.setThanhToan(1);
+                }
+
+                if (type == 0) {
+                    //type==0 insert
+                    if (hoaDonDAO.addHoaDon(item) > 0) {
+                        Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        capNhatLv();
+                    } else {
+                        Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    //type ==1 Update
+                    item.setMaHD(Integer.parseInt(edtMaHD.getText().toString()));
+                    if (hoaDonDAO.updateHoaDon(item) > 0) {
+                        Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                        capNhatLv();
+                    } else {
+                        Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 capNhatLv();
-              } else {
-                Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
-              }
-            } else {
-              //type ==1 Update
-              item.setMaHD(Integer.parseInt(edtMaHD.getText().toString()));
-              if (hoaDonDAO.updateHoaDon(item) > 0) {
-                Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                capNhatLv();
-              } else {
-                Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
-              }
+                dialog.dismiss();
             }
-            capNhatLv();
-            dialog.dismiss();
-          }
         });
         dialog.show();
 
