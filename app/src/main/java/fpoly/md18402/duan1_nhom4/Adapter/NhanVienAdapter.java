@@ -24,6 +24,8 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
     TextView tvMaNv, tvHoTen, tvSdt, tvCoSo;
     ImageView btnDelete;
 
+
+
     public NhanVienAdapter(@NonNull Context context, NhanVienFragment fragment, ArrayList<NhanVien> list) {
         super(context, 0, list);
         this.context = context;
@@ -44,17 +46,18 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
 
             tvMaNv = v.findViewById(R.id.tvMaNv_item);
             tvHoTen = v.findViewById(R.id.tvHoTen_item);
-            tvCoSo = v.findViewById(R.id.tvCoSo_item);
             tvSdt = v.findViewById(R.id.tvSdt_item);
             btnDelete=v.findViewById(R.id.btnDelete_NhanVien);
-//
+
             tvMaNv.setText(item.getMaNV());
             tvHoTen.setText(item.getHoTen());
 
             tvSdt.setText(item.getSdt() + "");
 
-
         }
+
+
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
