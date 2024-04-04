@@ -82,4 +82,27 @@ public class ThongKeDAO {
         }
         return list;
     }
+
+
+    @SuppressLint("Range")
+    public List<TopNV> getTop10NhanVienDoanhThuTheoNgay(String fromDate, String toDate) {
+        String query = "SELECT NhanVien.maNV, SUM(CTHD.tongTien * CTHD.soLuong) AS tienBan " +
+                "FROM NhanVien " +
+                "INNER JOIN HoaDon ON NhanVien.maNV = HoaDon.maNV " +
+                "INNER JOIN CTHD ON HoaDon.maHD = CTHD.maHD " +
+                "WHERE HoaDon.ngayMua BETWEEN ? AND ? " + // Thêm điều kiện khoảng thời gian vào câu truy vấn
+                "GROUP BY NhanVien.maNV " +
+                "ORDER BY tienBan DESC " +
+                "LIMIT 10";
+        List<TopNV> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, new String[]{fromDate, toDate});
+        while (cursor.moveToNext()) {
+            TopNV top = new TopNV();
+            top.setMaNV(cursor.getString(cursor.getColumnIndex("maNV")));
+            top.setTongTien(Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienBan"))));
+            list.add(top);
+        }
+        return list;
+    }
+
 }
