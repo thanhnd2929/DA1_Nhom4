@@ -85,7 +85,16 @@ public class SneakerAdapter extends RecyclerView.Adapter<SneakerAdapter.SneakerV
             mTxtPrice.setText("Giá : " + String.valueOf(dataItem.getGiaMua()));
             // can get loai bang ma sau do show len ten loai hoac
             LoaiGiay loaiGiay = loaiGiayDAO.getID(String.valueOf(dataItem.getMaLoai()));
-            mTxtType.setText("Thể loại : " + loaiGiay.getTenLoai());
+
+
+            if (loaiGiay == null) {
+                // Nếu loại giày là null, đặt thể loại là "chưa xác định"
+                mTxtType.setText("Thể loại : Chưa xác định");
+            } else {
+                // Nếu loại giày không null, hiển thị tên loại giày
+                mTxtType.setText("Thể loại : " + loaiGiay.getTenLoai());
+            }
+
             // reg click action
             mBtnDelete.setOnClickListener((e) -> {
                 action.onDeleteButtonClick(dataItem.getMaGiay());

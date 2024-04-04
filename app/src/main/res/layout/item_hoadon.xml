@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg2"
+    android:paddingHorizontal="12dp"
+    android:layout_margin="10dp"
     android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
 
@@ -90,17 +91,7 @@
         </LinearLayout>
 
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvMaNV"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Nguoi tao:" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvTenKH"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Ten Khach Hang:" />-->
 
 
 
@@ -129,7 +120,7 @@
 
     <ImageView
         android:id="@+id/btn_delete"
-        android:layout_width="24dp"
+        android:layout_width="20dp"
         android:layout_height="70dp"
 
         android:layout_marginTop="10dp"
