@@ -125,6 +125,15 @@ public class SneakerManagementFragment extends Fragment {
 
             @Override
             public void onItemClick(Integer ID) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", ID);
+                EditSnakerFragment editSnakerFragment = new EditSnakerFragment();
+                editSnakerFragment.setArguments(bundle);
+                replaceFragment(editSnakerFragment);
+            }
+
+            @Override
+            public void onEditButtonClick(Integer ID) {
 
             }
         };

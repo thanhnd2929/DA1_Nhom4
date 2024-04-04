@@ -24,9 +24,9 @@ import fpoly.md18402.duan1_nhom4.Model.Giay;
 import fpoly.md18402.duan1_nhom4.Model.LoaiGiay;
 import fpoly.md18402.duan1_nhom4.R;
 
+public class EditSnakerFragment extends Fragment {
 
-public class AddSneakerFragment extends Fragment {
-    private EditText  mEdtName, mEdtPrice, mEdtNote;
+    private EditText mEdtID, mEdtName, mEdtPrice, mEdtNote;
     private Spinner mSpnType;
 
     private Button mBtnSave, mBtnCancel;
@@ -35,16 +35,20 @@ public class AddSneakerFragment extends Fragment {
     private String selectedType = null;
     private GiayDAO giayDAO;
     private List<String> loaiGiays;
+    private int id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            this.id = getArguments().getInt("id");
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_add_sneaker, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_edit_snaker, container, false);
         init(root);
         return root;
     }
@@ -80,23 +84,36 @@ public class AddSneakerFragment extends Fragment {
         loadElements(root);
         regAction();
         loadSpinner();
+        bindData();
+    }
+
+    public void bindData() {
+        Giay giay = giayDAO.getID(String.valueOf(id));
+        if (giay != null) {
+            mEdtID.setText(String.valueOf(giay.getMaGiay()));
+            mEdtName.setText(giay.getTenGiay());
+            mEdtNote.setText(giay.getMoTa());
+            mEdtPrice.setText(String.valueOf(giay.getGiaMua()));
+        }
     }
 
     public void loadElements(View root) {
-        mEdtName = root.findViewById(R.id.edt_sneaker_name);
-        mEdtPrice = root.findViewById(R.id.edt_sneaker_price);
-        mSpnType = root.findViewById(R.id.spn_sneaker_type);
-        mBtnSave = root.findViewById(R.id.btn_save_sneaker);
-        mBtnCancel = root.findViewById(R.id.btn_cancel_save_sneaker);
-        mEdtNote = root.findViewById(R.id.edt_sneaker_note);
+        mEdtID = root.findViewById(R.id.edt_sneaker_id_edit);
+        mEdtName = root.findViewById(R.id.edt_sneaker_name_edit);
+        mEdtPrice = root.findViewById(R.id.edt_sneaker_price_edit);
+        mSpnType = root.findViewById(R.id.spn_sneaker_type_edit);
+        mBtnSave = root.findViewById(R.id.btn_save_sneaker_edit);
+        mBtnCancel = root.findViewById(R.id.btn_cancel_save_sneaker_edit);
+        mEdtNote = root.findViewById(R.id.edt_sneaker_note_edit);
     }
 
     public void addSneaker() {
-        if (mEdtName.getText().toString().equals("") || mEdtPrice.getText().toString().equals("") || mEdtNote.getText().toString().equals("")) {
+        if (mEdtID.getText().toString().equals("") || mEdtName.getText().toString().equals("") || mEdtPrice.getText().toString().equals("") || mEdtNote.getText().toString().equals("")) {
             Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        int ID = Integer.parseInt(mEdtID.getText().toString());
         String name = String.valueOf(mEdtName.getText());
         int price = Integer.parseInt(mEdtPrice.getText().toString());
         String description = String.valueOf(mEdtNote.getText());
@@ -106,11 +123,11 @@ public class AddSneakerFragment extends Fragment {
             selectedType = loaiGiays.get(0);
         }
         LoaiGiay loaiGiay = loaiGiayDAO.getByName(selectedType);
-        Giay giay = new Giay(name, description, price, loaiGiay.getMaLoai());
+        Giay giay = new Giay(ID, name, description, price, loaiGiay.getMaLoai());
         // save sneaker
-        giayDAO.addGiay(giay);
+        giayDAO.updateGiay(giay);
         // show toast
-        Toast.makeText(getContext(), "Add new sneaker success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Update sneaker success", Toast.LENGTH_SHORT).show();
         replaceFragment(new SneakerManagementFragment());
     }
 

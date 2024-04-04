@@ -109,5 +109,7 @@ public class SneakerAdapter extends RecyclerView.Adapter<SneakerAdapter.SneakerV
         void onDeleteButtonClick(Integer ID);
 
         void onItemClick(Integer ID);
+
+        void onEditButtonClick(Integer ID);
     }
 }

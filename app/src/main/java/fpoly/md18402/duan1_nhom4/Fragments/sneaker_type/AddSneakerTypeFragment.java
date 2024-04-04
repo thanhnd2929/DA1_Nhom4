@@ -26,7 +26,7 @@ import fpoly.md18402.duan1_nhom4.Model.LoaiGiay;
 import fpoly.md18402.duan1_nhom4.R;
 
 public class AddSneakerTypeFragment extends Fragment {
-    private EditText mEdtID, mEdtName, mEdtType;
+    private EditText  mEdtName, mEdtType;
 
     private Button mBtnSave, mBtnCancel;
     private LoaiGiayDAO loaiGiayDAO;
@@ -65,7 +65,6 @@ public class AddSneakerTypeFragment extends Fragment {
     }
 
     public void loadElements(View root) {
-        mEdtID = root.findViewById(R.id.edt_sneaker_type_id);
         mEdtName = root.findViewById(R.id.edt_sneaker_type_name);
         mEdtType = root.findViewById(R.id.edt_sneaker_type_cate);
         mBtnSave = root.findViewById(R.id.btn_save_sneaker_type);
@@ -73,15 +72,14 @@ public class AddSneakerTypeFragment extends Fragment {
     }
 
     public void addSneaker() {
-        if (mEdtID.getText().toString().equals("") || mEdtName.getText().toString().equals("") || mEdtType.getText().toString().equals("")) {
+        if (mEdtName.getText().toString().equals("") || mEdtType.getText().toString().equals("")) {
             Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int ID = Integer.parseInt(mEdtID.getText().toString());
         String name = String.valueOf(mEdtName.getText());
         String type = String.valueOf(mEdtType.getText());
-        LoaiGiay loaiGiay = new LoaiGiay(ID, name, type);
+        LoaiGiay loaiGiay = new LoaiGiay(name, type);
         loaiGiayDAO.addLoaiGiay(loaiGiay);
         // show toast
         Toast.makeText(getContext(), "Add new sneaker type success", Toast.LENGTH_SHORT).show();
