@@ -15,7 +15,7 @@ public class Insert_Data {
 
     public static final String Insert_Nhan_Vien = "INSERT INTO NhanVien(maNV, hoTen, matKhau, sdt)\n" +
             "Values ('nv01', 'Vũ Hùng', '12345', '0982345678'),\n" +
-            "('admin', 'Vũ Tiến', 'admin', '0982345345');";
+            "('nv02', 'Vũ Tiến', '12345', '0982345345');";
 
     public static final String Insert_Hoa_Don = "INSERT INTO HoaDon(ngayMua, thanhToan, maKH, maNV)\n" +
             "Values ('2024/09/03', 0, 1, 'nv01'),\n" +
