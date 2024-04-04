@@ -90,7 +90,7 @@ public class ThongKeDAO {
                 "FROM NhanVien " +
                 "INNER JOIN HoaDon ON NhanVien.maNV = HoaDon.maNV " +
                 "INNER JOIN CTHD ON HoaDon.maHD = CTHD.maHD " +
-                "WHERE HoaDon.ngayMua BETWEEN ? AND ? " + // Thêm điều kiện khoảng thời gian vào câu truy vấn
+                "WHERE HoaDon.ngayMua BETWEEN ? AND ? " +
                 "GROUP BY NhanVien.maNV " +
                 "ORDER BY tienBan DESC " +
                 "LIMIT 10";
