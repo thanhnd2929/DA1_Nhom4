@@ -23,10 +23,10 @@ public class TopNVAdapter extends ArrayAdapter<TopNV> {
     ArrayList<TopNV> list;
     TextView tvTenNV, tvDoanhThu;
 
-    public TopNVAdapter(@NonNull Context context, TopNvFragment topNvFragment, ArrayList<TopNV> list) {
+    public TopNVAdapter(@NonNull Context context,  ArrayList<TopNV> list) {
         super(context, 0, list);
         this.context = context;
-        this.topNvFragment = topNvFragment;
+//        this.topNvFragment = topNvFragment;
         this.list = list;
     }
 

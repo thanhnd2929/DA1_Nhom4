@@ -70,6 +70,10 @@ public class LoaiGiayDAO {
     public LoaiGiay getID(String id) {
         String sql = "SELECT * FROM LoaiGiay WHERE maLoai=?";
         List<LoaiGiay> list = getData(sql, id);
-        return list.get(0);
+        if (!list.isEmpty()) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 }
