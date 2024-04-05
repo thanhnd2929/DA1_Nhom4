@@ -26,6 +26,7 @@ import fpoly.md18402.duan1_nhom4.Fragments.ChangePassFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.DoanhThuFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
 
+import fpoly.md18402.duan1_nhom4.Fragments.TopGiayFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.TopNvFragment;
 
 import fpoly.md18402.duan1_nhom4.Fragments.khachHang.KhachHangFragment;
@@ -134,7 +135,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int idBottom = item.getItemId();
                 if (idBottom == R.id.TopBanGiay) {
-
+                   replaceFragment(new TopGiayFragment());
                 } else if (idBottom == R.id.TopNV) {
                     TopNvFragment topNvFragment = new TopNvFragment();
                     replaceFragment(topNvFragment);
