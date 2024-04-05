@@ -79,9 +79,8 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigationView.getMenu().findItem(R.id.DoanhThu).setVisible(false);
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
-        replaceFragment(new TopGiayFragment());
-//        HoaDonFragment fragment = new HoaDonFragment();
-//        replaceFragment(fragment);
+        HoaDonFragment fragment = new HoaDonFragment();
+        replaceFragment(fragment);
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -136,7 +135,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int idBottom = item.getItemId();
                 if (idBottom == R.id.TopBanGiay) {
-                    replaceFragment(new TopGiayFragment());
+                   replaceFragment(new TopGiayFragment());
                 } else if (idBottom == R.id.TopNV) {
                     TopNvFragment topNvFragment = new TopNvFragment();
                     replaceFragment(topNvFragment);
