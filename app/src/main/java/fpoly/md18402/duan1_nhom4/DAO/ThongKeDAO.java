@@ -28,7 +28,7 @@ public class ThongKeDAO {
 //    top 10 mặt hàng bán chạy nhất
     @SuppressLint("Range")
     public List<Top> getTop() {
-        String sqlTop = "SELECT Giay.tenGiay, SUM(CTHD.soLuong) AS soLuongBan\n" +
+        String sqlTop = "SELECT Giay.tenGiay,Giay.maGiay, SUM(CTHD.soLuong) AS soLuongBan\n" +
                 "FROM CTHD\n" +
                 "JOIN Giay ON CTHD.maGiay = Giay.maGiay\n" +
                 "GROUP BY CTHD.maGiay, Giay.tenGiay\n" +
@@ -38,7 +38,7 @@ public class ThongKeDAO {
         Cursor c = db.rawQuery(sqlTop, null);
         while (c.moveToNext()) {
             Top top = new Top();
-            top.setMaGiay(c.getString(c.getColumnIndex("tenGiay")));
+            top.setMaGiay(c.getString(c.getColumnIndex("maGiay")));
             top.setSoLuong(Integer.parseInt(c.getString(c.getColumnIndex("soLuongBan"))));
             list.add(top);
         }
