@@ -47,14 +47,26 @@
             android:paddingLeft="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Người tạo hoá đơn"
-        android:layout_marginLeft="24dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:id="@+id/tvMaNV"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Người tạo hoá đơn: "
+            android:layout_marginLeft="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvMaNV"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
     <Spinner
         android:id="@+id/sp_khach_hang"

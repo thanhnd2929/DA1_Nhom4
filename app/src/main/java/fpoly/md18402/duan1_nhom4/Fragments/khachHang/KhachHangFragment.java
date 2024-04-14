@@ -1,6 +1,7 @@
 package fpoly.md18402.duan1_nhom4.Fragments.khachHang;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -59,6 +60,7 @@ public class KhachHangFragment extends Fragment {
         rycKhachHang.setLayoutManager(layoutManager);
         adapter = new KhachHangAdapter(getActivity(), list);
         rycKhachHang.setAdapter(adapter);
+
         fltAddKhachHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

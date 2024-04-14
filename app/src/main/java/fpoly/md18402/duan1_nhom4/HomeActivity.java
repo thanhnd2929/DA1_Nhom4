@@ -29,6 +29,7 @@ import fpoly.md18402.duan1_nhom4.Fragments.HoaDonFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.TopGiayFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.TopNvFragment;
 
+import fpoly.md18402.duan1_nhom4.Fragments.TopNvHdFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.khachHang.KhachHangFragment;
 import fpoly.md18402.duan1_nhom4.Fragments.nhanVien.NhanVienFragment;
 
@@ -77,6 +78,7 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigationView.getMenu().findItem(R.id.TopNV).setVisible(false);
             bottomNavigationView.getMenu().findItem(R.id.TopBanGiay).setVisible(false);
             bottomNavigationView.getMenu().findItem(R.id.DoanhThu).setVisible(false);
+            bottomNavigationView.getMenu().findItem(R.id.TopNVHoaDon).setVisible(false);
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
         HoaDonFragment fragment = new HoaDonFragment();
@@ -104,6 +106,9 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (id == R.id.QuanLyNhanVien) {
                     NhanVienFragment nhanVienFragment = new NhanVienFragment();
                     replaceFragment(nhanVienFragment);
+                } else if (id == R.id.DoanhThuNV) {
+                    DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
+                    replaceFragment(doanhThuFragment);
                 } else if (id == R.id.DangXuat) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
                     builder.setTitle("Thông báo");
@@ -142,6 +147,9 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (idBottom == R.id.DoanhThu) {
                     DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
                     replaceFragment(doanhThuFragment);
+                } else if (idBottom == R.id.TopNVHoaDon) {
+                    TopNvHdFragment topNvHdFragment = new TopNvHdFragment();
+                    replaceFragment(topNvHdFragment);
                 }
                 getSupportActionBar().setTitle(item.getTitle());
                 return true;
