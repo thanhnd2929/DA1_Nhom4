@@ -104,16 +104,32 @@ public class HoaDonCtActivity extends AppCompatActivity {
                     cthd.setMaGiay(maGiay);
                     cthd.setGiaMua(giaTien);
 
-                    if (ctHoaDonDAO.addCTHD(cthd) > 0) {
-//                        Log.d("AAA: ", cthd.toString());
-                        Toast.makeText(HoaDonCtActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                        edtSoLuong.setText("");
-                        list.clear();
-                        list.addAll(ctHoaDonDAO.getAll(soHD));
-//                        Log.d("AAA: ", String.valueOf(list.addAll(ctHoaDonDAO.getAll(soHD))));
-                        hoaDonCtAdapter.notifyDataSetChanged();
+                    boolean isExist = false; // Biến để kiểm tra xem sản phẩm đã tồn tại trong danh sách hay không
+                    for (CTHD item : list) {
+                        if (item.getMaGiay() == maGiay) {
+                            // Nếu sản phẩm đã tồn tại trong danh sách, chỉ cần tăng số lượng
+                            item.setSoLuong(item.getSoLuong() + Integer.parseInt(soLuong));
+                            ctHoaDonDAO.updateCTHD(item);
+                            edtSoLuong.setText("");
+                            isExist = true;
+                            break;
+                        }
+                    }
+
+                    if (!isExist) {
+                        // Nếu sản phẩm chưa tồn tại trong danh sách, thêm mới vào
+                        if (ctHoaDonDAO.addCTHD(cthd) > 0) {
+                            Toast.makeText(HoaDonCtActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                            edtSoLuong.setText("");
+                            list.clear();
+                            list.addAll(ctHoaDonDAO.getAll(soHD));
+                            hoaDonCtAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(HoaDonCtActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(HoaDonCtActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                        // Nếu sản phẩm đã tồn tại trong danh sách, chỉ cần cập nhật lại danh sách và hiển thị
+                        hoaDonCtAdapter.notifyDataSetChanged();
                     }
                 }
                 capNhatLv();
@@ -135,6 +151,6 @@ public class HoaDonCtActivity extends AppCompatActivity {
         });
         lvHDCT.setAdapter(hoaDonCtAdapter);
         int tongTien = hoaDonCtAdapter.tongTien();
-        tvTongTien.setText(tongTien+" VND");
+        tvTongTien.setText("Tổng Tiền: "+tongTien+" VND");
     }
 }

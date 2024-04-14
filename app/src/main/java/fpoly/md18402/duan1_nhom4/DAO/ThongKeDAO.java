@@ -12,6 +12,7 @@ import java.util.List;
 import fpoly.md18402.duan1_nhom4.Database.DbHelper;
 import fpoly.md18402.duan1_nhom4.Model.Top;
 import fpoly.md18402.duan1_nhom4.Model.TopNV;
+import fpoly.md18402.duan1_nhom4.Model.TopNvHD;
 
 public class ThongKeDAO {
     private SQLiteDatabase db;
@@ -104,5 +105,32 @@ public class ThongKeDAO {
         }
         return list;
     }
+
+    @SuppressLint("Range")
+    public List<TopNvHD> getTop10NhanVienBySoLuongHD(String fromDate, String toDate) {
+        String query = "SELECT maNV, COUNT(maHD) AS soLuongHD " +
+                "FROM HoaDon " +
+                "WHERE ngayMua BETWEEN ? AND ? " +
+                "GROUP BY maNV " +
+                "ORDER BY soLuongHD DESC " +
+                "LIMIT 10";
+
+        List<TopNvHD> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, new String[]{fromDate, toDate});
+
+        while (cursor.moveToNext()) {
+            TopNvHD topNvHD = new TopNvHD();
+
+            topNvHD.setMaNV(cursor.getString(cursor.getColumnIndex("maNV")));
+            topNvHD.setSoLuongHD(cursor.getInt(cursor.getColumnIndex("soLuongHD")));
+
+            list.add(topNvHD);
+        }
+
+        cursor.close();
+        return list;
+    }
+
+
 
 }
