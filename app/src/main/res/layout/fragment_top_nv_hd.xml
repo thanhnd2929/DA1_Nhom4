@@ -70,6 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:dividerHeight="10dp"
+        android:divider="#fff"
         android:id="@+id/lvTopNvHd"
         tools:listitem="@layout/item_top_nv_hd"/>
 

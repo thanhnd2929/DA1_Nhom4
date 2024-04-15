@@ -82,7 +82,7 @@ public class TopNvFragment extends Fragment {
                 String denNgay = edtEndDate.getText().toString();
                 thongKeDAO = new ThongKeDAO(getActivity());
                 ArrayList<TopNV> newData = (ArrayList<TopNV>) thongKeDAO.getTop10NhanVienDoanhThuTheoNgay(tuNgay, denNgay);
-                if (newData != null) {
+                if (!newData.isEmpty()) {
                     list.clear(); // Xóa dữ liệu cũ
                     list.addAll(newData); // Thêm dữ liệu mới
                     if (topNVAdapter == null) {
@@ -95,6 +95,10 @@ public class TopNvFragment extends Fragment {
                     // Xử lý trường hợp không có dữ liệu trả về
                     Toast.makeText(getActivity(), "Khoảng thời gian bạn chọn không có hoá đơn", Toast.LENGTH_SHORT).show();
                     Log.d("zzzz", "Không có dữ liệu trả về từ cơ sở dữ liệu");
+                    list.clear();
+                    if (topNVAdapter != null) {
+                        topNVAdapter.notifyDataSetChanged(); // Thông báo cho adapter biết rằng dữ liệu đã thay đổi
+                    }
                 }
             }
         });

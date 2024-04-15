@@ -15,11 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/searchView"/>
+
         <ListView
             android:id="@+id/lvHoaDon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
+            android:divider="#fff"
+            android:dividerHeight="18dp"
             tools:listitem="@layout/item_hoadon" />
     </LinearLayout>
 
