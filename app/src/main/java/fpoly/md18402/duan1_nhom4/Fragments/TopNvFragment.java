@@ -80,6 +80,9 @@ public class TopNvFragment extends Fragment {
             public void onClick(View v) {
                 String tuNgay = edtStartDate.getText().toString();
                 String denNgay = edtEndDate.getText().toString();
+                if (tuNgay.isEmpty() || denNgay.isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn cần chọn khoảng thời gian", Toast.LENGTH_SHORT).show();
+                }
                 thongKeDAO = new ThongKeDAO(getActivity());
                 ArrayList<TopNV> newData = (ArrayList<TopNV>) thongKeDAO.getTop10NhanVienDoanhThuTheoNgay(tuNgay, denNgay);
                 if (!newData.isEmpty()) {
